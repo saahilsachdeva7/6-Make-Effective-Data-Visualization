@@ -9,12 +9,14 @@ This project involves visualization of Titanic survival using passenegers data s
 
 
 Design
+
 •	Chart type: As the dataset contains passsengers information in different categories, a bar charts is the best way to see trends of the titanic survival.
 •	Layout: Since only two survivorship status exist so stacked bar chart layout is best suited to visualize the data.
 •	Legend: Data are represented in the ratios, the stacked bar chart of y-axis are same for all the categories so, legend are moved to the right hand side of the chart.
 •	Visual encodings: X-axis represents different categories of an information and y-axis represents ratio of passengers. Sequential colors are used to differentiate between 'survived' and 'perished'. Shape of the stacked bar chart is rectangle.
 
 Feedback
+
 1 Color in the stacked bar chart can be improved. The color which are used are good but more conventional and sequential color can improve the visualization.
 2 Reduce the width of stack bar chart for the second graph (Titanic survival rate by age group) so that it can be more clearly represent the age group.
 3 To display the likelihood of survival, it is best to use ratios of the survival, so change the count to ratio in the chart 1 and chart 3. It would be best to use 'perished' instead of 'dead' as this tense matches that of 'survived'.
