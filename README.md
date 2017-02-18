@@ -6,12 +6,14 @@ This project involves visualization of Titanic survival using passenegers data s
 Titanic survival by class: First class passengers have the highest survival rate among all the different classes.
 Titanic survival by age group: The Children belonging to the age group 0-15 have the highest survival rate.
 Titanic survival by class and gender: The First class female have maximum survival rate and the third class male have minimum survival rate.
+
 Design
 
 Chart type: As the dataset contains passsengers information in different categories, a bar charts is the best way to see trends of the titanic survival.
 Layout: Since only two survivorship status exist so stacked bar chart layout is best suited to visualize the data.
 Legend: Data are represented in the ratios, the stacked bar chart of y-axis are same for all the categories so, legend are moved to the right hand side of the chart.
 Visual encodings: X-axis represents different categories of an information and y-axis represents ratio of passengers. Sequential colors are used to differentiate between 'survived' and 'perished'. Shape of the stacked bar chart is rectangle.
+
 Feedback
 
 1
