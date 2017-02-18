@@ -33,8 +33,12 @@ Final Visualization
 
 
 Resources
+
 •	mbostock
+
 •	d3 documentation's
+
 •	DashingD3js
+
 •	Color Brewer
 
