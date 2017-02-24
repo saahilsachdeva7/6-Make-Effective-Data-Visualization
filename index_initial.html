@@ -57,40 +57,48 @@
       </div>
 
 
-  <script>
+   <script>
+  // set width and height dimensions of the chart
   var margin = {top: 20, right: 50, bottom: 50, left: 50},
       width = 960 - margin.left - margin.right,
       height = 500 - margin.top - margin.bottom;
+  // set the ranges
   var x = d3.scale.ordinal()
       .rangeRoundBands([margin.left, width],0.5);
   var y = d3.scale.linear()
       .rangeRound([height,margin.top]);
+  // define x-axis
   var xAxis = d3.svg.axis()
       .scale(x)
       .orient("bottom");
-  var colorRange = d3.scale.ordinal()
-    .range(["#41ae76","#99d8c9"]);
+  // define y-axis
   var yAxis = d3.svg.axis()
       .scale(y)
       .orient("left");
+  // create color category for the chart
+  var colorRange = d3.scale.ordinal()
+    .range(["#41ae76","#78c679"]);
+  // append svg element to the page
   var svg = d3.select("#chart1").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  // read csv file and apply data to the chart
   d3.csv("survivability_by_cabin.csv", function(data) {
-      var status = ["Survived", "Dead"];
-      var count_layers = d3.layout.stack()(status.map(function(temp) {
+      var status = ["Survived_rate", "Perished_rate"];
+      var rate_layers = d3.layout.stack()(status.map(function(temp) {
           return data.map(function(d) {
               return {x : d.Cabin_class,
                   y : +d[temp] };
           });
       }));
-      x.domain(count_layers[0].map(function(d) { return d.x; }));
-      y.domain([0, d3.max(count_layers[count_layers.length - 1], function(d) {
-          return d.y0 + d.y; })]).nice();
+      // select the range of the data
+      x.domain(rate_layers[0].map(function(d) { return d.x; }));
+      y.domain([0, 1]);
+      // create layers in the stacked bar chart
       var layer= svg.selectAll(".layer")
-              .data(count_layers)
+              .data(rate_layers)
               .enter()
               .append("g")
               .attr("class", "layer")
@@ -109,8 +117,9 @@
                   var yPosition = d3.mouse(this)[1] - 25;
                   tooltip.attr("transform", "translate(" + xPosition + "," +
                       yPosition + ")");
-                  tooltip.select("text").text("Count: "+d.y);})
+                  tooltip.select("text").text("Ratio: "+d.y);})
               .on("mouseout", function() { tooltip.style("display", "none");});
+      // add x-axis and label
       svg.append("g")
               .attr("class", "axis axis--x")
               .call(xAxis)
@@ -120,6 +129,7 @@
               .attr("transform","translate("+(width/2)+","+margin.bottom+")")
               .style("font-size",20)
               .text("Cabin Class");
+      // add y-axis and label
       svg.append("g")
               .attr("class", "axis axis--y")
               .attr("transform","translate("+margin.left+","+0+")")
@@ -128,7 +138,8 @@
               .attr("text-anchor","end")
               .attr("transform","translate("+(-margin.left)+","+(height/2-margin.bottom)+")rotate(-90)")
               .style("font-size",20)
-              .text("Number of Passengers");
+              .text("Ratio of Passengers");
+      // define tooltip
       var tooltip = svg.append("g")
               .attr("class", "tooltip")
               .style("display", "none");
@@ -143,12 +154,14 @@
               .style("text-anchor", "middle")
               .attr("font-size", "12px")
               .attr("font-weight", "bold");
+      // add title for the chart
       var h2 = svg.append("text")
               .text("Titanic Survival by Class")
               .attr("text-anchor","middle")
               .attr("transform","translate("+(width+margin.left)/2+","+0+")")
               .attr("class","header")
               .attr("font-size",25);
+      // add legend to the chart
       var legend = svg.selectAll(".legend")
               .data(colorRange.domain().slice().reverse())
               .enter()
@@ -166,12 +179,12 @@
               .attr("dy", ".35em")
               .style("text-anchor", "end")
               .text(function(d, i) { switch (i) {
-                  case 0: return "Dead";
+                  case 0: return "Perished";
                   case 1: return "Survived"; }});
   });
   // Chart 2
   var margin = {top: 20, right: 50, bottom: 50, left: 50},
-      width = 960 - margin.left - margin.right,
+      width = 2000 - margin.left - margin.right,
       height = 500 - margin.top - margin.bottom;
   var x = d3.scale.ordinal()
       .rangeRoundBands([margin.left, width],0.5);
@@ -220,7 +233,7 @@
                   var yPosition = d3.mouse(this)[1] - 25;
                   tooltip.attr("transform", "translate(" + xPosition + "," +
                       yPosition + ")");
-                  tooltip.select("text").text("Count: "+d.y);})
+                  tooltip.select("text").text("Ratio: "+d.y);})
               .on("mouseout", function() { tooltip.style("display", "none");});
       svg2.append("g")
               .attr("class", "axis axis--x")
