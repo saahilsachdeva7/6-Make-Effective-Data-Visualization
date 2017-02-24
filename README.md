@@ -23,11 +23,17 @@ Design
 
 Feedback
 
-1 Color in the stacked bar chart can be improved. The color which are used are good but more conventional and sequential color can improve the visualization.
+Feedback Provider 1
 
-2 Reduce the width of stack bar chart for the second graph (Titanic survival rate by age group) so that it can be more clearly represent the age group.
+Color in the stacked bar chart can be improved. The color which are used are good but more conventional and sequential color can improve the visualization.
 
-3 To display the likelihood of survival, it is best to use ratios of the survival, so change the count to ratio in the chart 1 and chart 3. It would be best to use 'perished' instead of 'dead' as this tense matches that of 'survived'.
+Feedback Provider 2
+
+Reduce the width of stack bar chart for the second graph (Titanic survival rate by age group) so that it can be more clearly represent the age group.
+
+Feedback Provider 3
+
+To display the likelihood of survival, it is best to use ratios of the survival, so change the count to ratio in the chart 1 and chart 3. It would be best to use 'perished' instead of 'dead' as this tense matches that of 'survived'.
 
 Final Visualization
 
